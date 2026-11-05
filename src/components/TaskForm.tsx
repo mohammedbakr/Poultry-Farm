@@ -1,7 +1,7 @@
 // src/components/TaskForm.tsx
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { createTask, updateTask } from '../services/taskService';
+import { createTask, updateTask, getTodayDateString } from '../services/taskService';
 import type { TaskFormData, TaskType, ScheduledTask } from '../types';
 
 interface Props {
@@ -23,7 +23,7 @@ export default function TaskForm({ batchId, task, onSaved, onCancel }: Props) {
     title_ar: task?.title_ar || '',
     title_en: task?.title_en || '',
     description: task?.description || '',
-    scheduled_date: task?.scheduled_date || new Date().toISOString().split('T')[0],
+    scheduled_date: task?.scheduled_date || getTodayDateString(),
     reminder_time: task?.reminder_time || '07:00',
   });
   const [saving, setSaving] = useState(false);

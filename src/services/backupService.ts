@@ -1,5 +1,6 @@
 // src/services/backupService.ts
 import { db } from '../db/database';
+import { getTodayDateString } from './taskService';
 import type { Species, Batch, ScheduledTask, Expense } from '../types';
 
 export const BACKUP_VERSION = 2;
@@ -99,7 +100,7 @@ export async function downloadBackup(): Promise<string> {
   const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
 
-  const dateStr = new Date().toISOString().split('T')[0];
+  const dateStr = getTodayDateString();
   const filename = `poultry-farm-backup-${dateStr}.json`;
 
   const link = document.createElement('a');

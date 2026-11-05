@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAllSpecies } from '../services/speciesService';
 import { createBatch, updateBatch } from '../services/batchService';
+import { getTodayDateString } from '../services/taskService';
 import type { Species, BatchFormData, Batch } from '../types';
 
 interface Props {
@@ -18,7 +19,7 @@ export default function BatchForm({ batch, onSaved, onCancel }: Props) {
   const [form, setForm] = useState<BatchFormData>({
     species_id: batch?.species_id || 0,
     name: batch?.name || '',
-    purchase_date: batch?.purchase_date || new Date().toISOString().split('T')[0],
+    purchase_date: batch?.purchase_date || getTodayDateString(),
     initial_count: batch?.initial_count || 0,
     current_count: batch?.current_count || 0,
     purchase_cost: batch?.purchase_cost != null ? batch.purchase_cost : undefined,
