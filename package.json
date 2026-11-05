@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "BASE_URL=/Poultry-Farm/ npm run build && cd dist && git init && git add -A && git commit -m 'Deploy to GitHub Pages' && git branch -M gh-pages && git remote add origin https://github.com/mohammedbakr/Poultry-Farm.git && git push -f origin gh-pages && rm -rf .git"
   },
   "dependencies": {
     "dexie": "^4.4.7",
